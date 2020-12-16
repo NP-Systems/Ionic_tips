@@ -1,0 +1,7 @@
+{
+  "name": "forDev",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
