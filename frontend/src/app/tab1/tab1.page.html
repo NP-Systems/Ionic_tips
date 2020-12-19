@@ -7,11 +7,27 @@
 </ion-header>
 
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 1</ion-title>
-    </ion-toolbar>
-  </ion-header>
 
-  <app-explore-container name="Tab 1 page"></app-explore-container>
+  <ion-item>
+    <input type="file" accept='image/*'  (change)="fileChangeEvent($event)" />
+  </ion-item>
+
+  <ion-progress-bar type="indeterminate" *ngIf="show" reversed="true"></ion-progress-bar>
+
+  <image-cropper
+  [imageChangedEvent]="imageChangedEvent"
+  [maintainAspectRatio]="false"
+  [aspectRatio]="5/ 3"
+  format="jpeg"
+  (imageCropped)="imageCropped($event)"
+  (imageLoaded)="imageLoaded()"
+  (cropperReady)="cropperReady()"
+  (loadImageFailed)="loadImageFailed()"
+  imageQuality=25
+></image-cropper>
+
+  <img [src]="croppedImageBase64" />
+
+  <ion-button expand='block' (click)="onButtonClicked()" shape='round'>Get cropped image</ion-button>
+
 </ion-content>
